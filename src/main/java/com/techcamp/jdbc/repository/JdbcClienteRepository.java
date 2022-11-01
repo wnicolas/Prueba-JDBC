@@ -46,7 +46,7 @@ public class JdbcClienteRepository implements ClienteRepository {
 
     @Override
     public List<Cliente> findAll() {
-        return jdbcTemplate.query("SELECT * from tutorials", BeanPropertyRowMapper.newInstance(Cliente.class));
+        return jdbcTemplate.query("SELECT * from CLIENTES", BeanPropertyRowMapper.newInstance(Cliente.class));
     }
 
     @Override

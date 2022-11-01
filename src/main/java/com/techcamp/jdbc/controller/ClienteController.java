@@ -31,6 +31,11 @@ public class ClienteController {
     @Autowired
     JdbcClienteRepository clienteRepository;
 
+    @GetMapping("/clientes")
+    public ResponseEntity<List<Cliente>> verTodos() {
+        return new ResponseEntity(clienteRepository.findAll(), HttpStatus.OK);
+    }
+
     @PostMapping("/clientes")
     public String guardar() {
         clienteRepository.save(new Cliente("C.C", "1234", "hOLA", "Mundo"));
