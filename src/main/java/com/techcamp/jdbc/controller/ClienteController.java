@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.techcamp.jdbc.repository.ClienteRepository;
+import com.techcamp.jdbc.repository.JdbcClienteRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -24,31 +27,13 @@ import com.techcamp.jdbc.repository.ClienteRepository;
 @RestController
 @Slf4j
 public class ClienteController {
-    
+
     @Autowired
-    ClienteRepository clienteRepository;
-    
-    @GetMapping("/")
-    public String inicio() {
-        log.debug("Hola mundo");
-        return "Hola mundo";
-    }
-    
-    @GetMapping("/clientes")
-    public ResponseEntity<List<Cliente>> getAllClientes() {
-        try {
-            log.debug("Hola mundo");
-            List<Cliente> Clientes = new ArrayList<Cliente>();
-            
-            clienteRepository.findAll().forEach(Clientes::add);
-            
-            if (Clientes.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            
-            return new ResponseEntity<>(Clientes, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    JdbcClienteRepository clienteRepository;
+
+    @PostMapping("/clientes")
+    public String guardar() {
+        clienteRepository.save(new Cliente("C.C", "1234", "hOLA", "Mundo"));
+        return "Guardado con éxito";
     }
 }

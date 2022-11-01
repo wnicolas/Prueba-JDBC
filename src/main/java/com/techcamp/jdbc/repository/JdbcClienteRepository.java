@@ -26,6 +26,8 @@ public class JdbcClienteRepository implements ClienteRepository {
         return jdbcTemplate.update("INSERT INTO clientes VALUES(?,?,?,?)",
                 new Object[]{cliente.getTipoDocumento(), cliente.getNumeroDocumento(), cliente.getNombres(), cliente.getApellidos()});
     }
+    
+    
 
     @Override
     public int update(Cliente cliente) {
