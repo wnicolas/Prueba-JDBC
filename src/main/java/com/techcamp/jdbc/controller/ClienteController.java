@@ -42,4 +42,10 @@ public class ClienteController {
         clienteRepository.save(cliente);
         return "Guardado con éxito";
     }
+
+    @GetMapping("/procedimiento")
+    public String procedimiento() {
+        clienteRepository.accionarProcedimiento();
+        return "Hola";
+    }
 }

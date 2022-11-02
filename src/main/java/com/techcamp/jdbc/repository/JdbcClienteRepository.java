@@ -21,13 +21,15 @@ public class JdbcClienteRepository implements ClienteRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public void accionarProcedimiento() {
+        jdbcTemplate.update("call PR_INSERTAR_CUENTA()");
+    }
+
     @Override
     public int save(Cliente cliente) {
         return jdbcTemplate.update("INSERT INTO clientes VALUES(?,?,?,?)",
                 new Object[]{cliente.getTipoDocumento(), cliente.getNumeroDocumento(), cliente.getNombres(), cliente.getApellidos()});
     }
-    
-    
 
     @Override
     public int update(Cliente cliente) {
