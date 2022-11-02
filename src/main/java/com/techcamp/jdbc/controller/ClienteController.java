@@ -37,8 +37,9 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes")
-    public String guardar() {
-        clienteRepository.save(new Cliente("C.C", "1234", "hOLA", "Mundo"));
+    public String guardar(@RequestBody Cliente cliente) {
+
+        clienteRepository.save(cliente);
         return "Guardado con éxito";
     }
 }
